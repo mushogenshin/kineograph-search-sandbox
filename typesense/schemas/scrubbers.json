@@ -1,0 +1,39 @@
+{
+  "name": "PLACEHOLDER",
+  "fields": [
+    { "name": "title_en",         "type": "string", "optional": true, "infix": true },
+    { "name": "title_de",         "type": "string", "optional": true, "infix": true },
+    { "name": "title_es",         "type": "string", "optional": true, "infix": true },
+    { "name": "title_fr",         "type": "string", "optional": true, "infix": true },
+    { "name": "title_ja",         "type": "string", "optional": true, "locale": "ja", "infix": true },
+    { "name": "title_ko",         "type": "string", "optional": true, "locale": "ko", "infix": true },
+    { "name": "title_ru",         "type": "string", "optional": true, "locale": "ru", "infix": true },
+    { "name": "title_vi",         "type": "string", "optional": true, "infix": true },
+    { "name": "title_zh",         "type": "string", "optional": true, "locale": "zh", "infix": true },
+    { "name": "title_zh_Hant",    "type": "string", "optional": true, "locale": "zh", "infix": true },
+
+    { "name": "description_en",   "type": "string", "optional": true, "infix": true },
+    { "name": "description_de",   "type": "string", "optional": true, "infix": true },
+    { "name": "description_es",   "type": "string", "optional": true, "infix": true },
+    { "name": "description_fr",   "type": "string", "optional": true, "infix": true },
+    { "name": "description_ja",   "type": "string", "optional": true, "locale": "ja", "infix": true },
+    { "name": "description_ko",   "type": "string", "optional": true, "locale": "ko", "infix": true },
+    { "name": "description_ru",   "type": "string", "optional": true, "locale": "ru", "infix": true },
+    { "name": "description_vi",   "type": "string", "optional": true, "infix": true },
+    { "name": "description_zh",   "type": "string", "optional": true, "locale": "zh", "infix": true },
+    { "name": "description_zh_Hant", "type": "string", "optional": true, "locale": "zh", "infix": true },
+
+    { "name": "author_name",      "type": "string", "optional": true, "infix": true },
+    { "name": "author_uid",       "type": "string", "optional": true, "index": false },
+    { "name": "author_username",  "type": "string", "optional": true, "infix": true },
+
+    { "name": "tags_all",         "type": "string[]", "optional": true, "facet": true, "infix": true },
+
+    { "name": "imagePath",        "type": "string", "optional": true, "index": false },
+    { "name": "rangeStart",       "type": "int32",  "optional": true, "index": false },
+    { "name": "imageVersion",     "type": "int32",  "optional": true, "index": false },
+
+    { "name": "disciplineId", "type": "string", "optional": true, "facet": true },
+    { "name": "createdAt",        "type": "int64",  "optional": true, "sort": true }
+  ]
+}

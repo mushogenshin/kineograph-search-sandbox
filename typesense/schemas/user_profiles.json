@@ -1,0 +1,11 @@
+{
+  "name": "user_profiles",
+  "fields": [
+    { "name": "displayName",  "type": "string", "infix": true },
+    { "name": "photoUrl",     "type": "string", "optional": true, "index": false },
+    { "name": "provider",     "type": "string", "optional": true, "facet": true },
+    { "name": "username",     "type": "string", "optional": true, "infix": true },
+    { "name": "scrubberCount","type": "int32",  "optional": true, "sort": true },
+    { "name": "updatedAt",   "type": "int64",  "optional": true }
+  ]
+}
