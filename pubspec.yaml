@@ -1,0 +1,31 @@
+name: kineograph_search_sandbox
+description: "Minimal Flutter + Firebase sandbox for validating Typesense search behavior against the Kineograph production data set. Carved from the production app — not a complete reproduction."
+publish_to: 'none'
+
+# The version is intentionally not synced with the production app — this is
+# a one-off validation harness, not a release artifact.
+version: 0.1.0+1
+
+environment:
+  sdk: '>=3.9.2 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Firebase — auth (for anonymous sign-in so Firestore reads succeed),
+  # Firestore (read-side only; the sandbox never writes), core.
+  firebase_core: ^4.4.0
+  firebase_auth: ^6.1.4
+  cloud_firestore: ^6.1.2
+
+  # The search client itself.
+  typesense: ^0.5.2
+
+dev_dependencies:
+  flutter_lints: ^6.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true

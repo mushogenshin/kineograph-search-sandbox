@@ -1,0 +1,11 @@
+# Standard Flutter lints. Kept narrow because the sandbox is intentionally
+# small — there's no historical codebase to grandfather rules against.
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    # Doc-comment ergonomics: the carve preserves production doc-comments so
+    # the collaborator can see the rationale behind each decision. A few of
+    # them reference removed code paths (e.g. discipline-scoped article
+    # search). Don't make analyze fail on dangling doc references.
+    comment_references: false
