@@ -9,3 +9,10 @@ linter:
     # them reference removed code paths (e.g. discipline-scoped article
     # search). Don't make analyze fail on dangling doc references.
     comment_references: false
+
+    # The carve mirrors the production codebase's `if (x != null) ...` style
+    # for conditional collection elements. Adopting the newer `?key: value`
+    # null-aware syntax would diverge from the production source these
+    # files are carved from — making future re-carving harder. Suppress so
+    # `flutter analyze` is clean against the verbatim production style.
+    use_null_aware_elements: false
