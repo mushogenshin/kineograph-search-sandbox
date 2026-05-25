@@ -39,8 +39,32 @@ bool get _useEmulator {
 ///   include a generated `firebase_options.dart`. Run `flutterfire
 ///   configure` locally to generate one (it's gitignored) and update the
 ///   call site in `main.dart` if you want to target those platforms.
+/// True once [initFirebase] has completed successfully — used by the
+/// auth and Firestore-read code paths to short-circuit when Firebase
+/// isn't actually wired up (collaborator hasn't run `flutterfire configure`
+/// yet, or is running on macOS / Windows / web before the platform
+/// config has been generated).
+bool get firebaseAvailable => _firebaseInitialized;
+bool _firebaseInitialized = false;
+
 Future<void> initFirebase() async {
-  await Firebase.initializeApp();
+  try {
+    await Firebase.initializeApp();
+    _firebaseInitialized = true;
+  } catch (e) {
+    // Most likely cause: no platform config (google-services.json /
+    // GoogleService-Info.plist / generated firebase_options.dart). The
+    // sandbox keeps running so the collaborator can still hit Typesense
+    // directly — search doesn't depend on Firebase. The result-tile
+    // navigation paths show the routing payload from the Typesense hit
+    // without making the Firestore round-trip the production app does.
+    debugPrint(
+      'Firebase: initialization failed ($e). '
+      'Continuing without Firebase — Firestore reads and anonymous '
+      'auth will be skipped. Run `flutterfire configure` to wire it up.',
+    );
+    return;
+  }
 
   if (_useEmulator) {
     FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);

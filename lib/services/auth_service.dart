@@ -7,6 +7,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 
+import 'package:kineograph_search_sandbox/services/firebase_init.dart';
+
 /// Best-effort anonymous sign-in.
 ///
 /// Production Firestore security rules typically require a non-null
@@ -14,10 +16,15 @@ import 'package:flutter/foundation.dart';
 /// gives the sandbox an Auth UID without bringing in any of the
 /// real auth providers.
 ///
-/// Failures are logged but not surfaced — the rest of the app should
-/// still launch so the collaborator can at least see the search screen
-/// and any error toast on the first Firestore round-trip.
+/// Skipped silently when Firebase isn't initialized (e.g. the collaborator
+/// hasn't run `flutterfire configure` yet). Other failures are logged
+/// but not surfaced — the rest of the app should still launch so the
+/// collaborator can hit Typesense directly.
 Future<void> signInAnonymouslyIfNeeded() async {
+  if (!firebaseAvailable) {
+    debugPrint('Auth: skipping (Firebase not initialized)');
+    return;
+  }
   final auth = FirebaseAuth.instance;
   if (auth.currentUser != null) {
     debugPrint('Auth: already signed in (uid=${auth.currentUser!.uid})');
